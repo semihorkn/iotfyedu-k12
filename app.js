@@ -84,7 +84,7 @@ cards.innerHTML=courses.map((c,i)=>`<article class="course ${palette[c[1]]} ${i>
 $('.filters').innerHTML=`<button class="active" data-filter="all">Tüm içerikler</button><button data-filter="fen">Fen Bilimleri</button><button data-filter="code">Bilgisayar Bilimleri</button><button data-filter="ai">Veri Bilimi ve Yapay Zeka</button>`;
 
 let expanded=false, activeFilter='all';
-function updateCatalog(){let shown=0;cards.classList.toggle('catalog-expanded',expanded);$$('.course').forEach(card=>{const match=activeFilter==='all'||card.dataset.category===activeFilter;const show=match&&(expanded||shown<8);card.hidden=!show;card.style.display=show?'flex':'none';if(match)shown++});const toggle=$('.show-more');toggle.textContent=expanded?'Kapat −':'Daha fazla gör ＋';toggle.setAttribute('aria-expanded',String(expanded));toggle.setAttribute('aria-controls','courseCatalog')}
+function updateCatalog(){let shown=0;cards.classList.toggle('catalog-expanded',expanded);$$('.course').forEach(card=>{const match=activeFilter==='all'||card.dataset.category===activeFilter;const show=match&&(expanded||shown<5);card.hidden=!show;card.style.display=show?'flex':'none';if(match)shown++});const toggle=$('.show-more');toggle.textContent=expanded?'Kapat −':'Daha fazla gör ＋';toggle.setAttribute('aria-expanded',String(expanded));toggle.setAttribute('aria-controls','courseCatalog')}
 $$('.filters button').forEach(b=>b.onclick=()=>{activeFilter=b.dataset.filter;$$('.filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');expanded=false;updateCatalog()});
 cards.id='courseCatalog';
 $('.show-more').addEventListener('click',()=>{expanded=!expanded;updateCatalog();if(!expanded)$('.library').scrollIntoView({behavior:'smooth',block:'start'})});
